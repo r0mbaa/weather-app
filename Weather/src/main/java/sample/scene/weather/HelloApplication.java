@@ -11,6 +11,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    private static String city;
+
+    public static void setCity(String cityName) {
+        city = cityName;
+    }
+
+    public static String getCity() {
+        return city;
+    }
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));

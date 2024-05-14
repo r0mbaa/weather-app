@@ -68,12 +68,14 @@ public class Controller {
 
     @FXML
     public void handleButtonActionOnDayBefore(ActionEvent event) {
+        HelloApplication.setCity(City.getText());
+        YandexWeather.Main.main(null);
         System.out.println("Кнопка назад была нажата!");
     }
 
     @FXML
     public void initialize() {
-        City.setText("Vladimir");
+
         Date.setText(ConnectionWorldTime.getDateInfoFromJson().getYear()+"."+ConnectionWorldTime.getDateInfoFromJson().getMonth()+"."+ConnectionWorldTime.getDateInfoFromJson().getDay());
     }
 
