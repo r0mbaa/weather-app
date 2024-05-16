@@ -1,14 +1,20 @@
 package sample.scene.weather;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
 
 public class Controller {
 
     @FXML
-    private Button BeforeDayButton;
+    private Button StartButton;
 
     @FXML
     private TextField City;
@@ -17,25 +23,13 @@ public class Controller {
     private TextField Date;
 
     @FXML
-    private TextField GoMax;
-
-    @FXML
-    private TextField GoMin;
-
-    @FXML
-    private TextField GoOs;
-
-    @FXML
-    private TextField GoPressure;
-
-    @FXML
     private Button NextDayButton;
 
     @FXML
-    private TextField YaMax;
+    private TextField YaWind;
 
     @FXML
-    private TextField YaMin;
+    private TextField YaOnStreet;
 
     @FXML
     private TextField YaOs;
@@ -47,36 +41,35 @@ public class Controller {
     private TextField YaTemp;
 
     @FXML
-    private TextField gisMax;
+    private ImageView image;
 
     @FXML
-    private TextField gisMin;
-
-    @FXML
-    private TextField gisOs;
-
-    @FXML
-    private TextField gisPressure;
-
-    @FXML
-    private TextField gisTemp;
-
-    @FXML
-    public void handleButtonActionOnNextDay(ActionEvent event) {
-        System.out.println("Кнопка вперед была нажата!");
+    public void handleButtonActionStart(ActionEvent event) {
+        MainApplication.setCity(City.getText());
+        YaWeather.main();
+        System.out.println("Кнопка рассчета была нажата!");
+        updateWeatherData(); // Вызываем метод для обновления данных
     }
 
-    @FXML
-    public void handleButtonActionOnDayBefore(ActionEvent event) {
-        HelloApplication.setCity(City.getText());
-        YandexWeather.Main.main(null);
-        System.out.println("Кнопка назад была нажата!");
+    private void updateWeatherData() {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map<String, Object> weatherData = objectMapper.readValue(new File("weather_data.json"), Map.class);
+
+            // Извлекаем данные из weatherData
+            YaTemp.setText(((Map<String, Object>) weatherData.get("current")).get("temp_c").toString() + "°C");
+            YaOs.setText(((Map<String, Object>) weatherData.get("current")).get("feelslike_c").toString() + "°C");
+            YaWind.setText(((Map<String, Object>) weatherData.get("current")).get("wind_kph").toString() + "км/ч"); // Пример, уточните ключи в weather_data.json
+            YaOnStreet.setText(((Map<String, Object>) ((Map<String, Object>) weatherData.get("current")).get("condition")).get("text").toString());
+            YaPressure.setText(((Map<String, Object>) weatherData.get("current")).get("pressure_mb").toString() + " гПа");
+
+        } catch (IOException e) {
+            System.err.println("Ошибка при чтении файла weather_data.json: " + e.getMessage());
+        }
     }
 
     @FXML
     public void initialize() {
-
         Date.setText(ConnectionWorldTime.getDateInfoFromJson().getYear()+"."+ConnectionWorldTime.getDateInfoFromJson().getMonth()+"."+ConnectionWorldTime.getDateInfoFromJson().getDay());
     }
-
 }
