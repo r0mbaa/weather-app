@@ -79,7 +79,5 @@ public class Controller {
     public void initialize() {
         // ставим дату ( она кста по мск там utc+3)
         Date.setText(ConnectionWorldTime.getDateInfoFromJson().getYear()+"."+ConnectionWorldTime.getDateInfoFromJson().getMonth()+"."+ConnectionWorldTime.getDateInfoFromJson().getDay());
-        File file = new File("time.json"); // ищим джсон со временем
-        file.delete(); // удаляем джсон чтобы не оставлять улик
     }
 }
