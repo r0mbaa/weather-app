@@ -1,7 +1,5 @@
 package sample.scene.weather;
 
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -34,13 +32,11 @@ public class ConnectionWorldTime {
     }
 
     public static DateInfo getDateInfoFromJson() {
-        String path = "http://worldtimeapi.org/api/timezone/Europe/Moscow";
         InputStream inputStream = null;
         FileOutputStream fileOutputStream = null;
 
         try {
-            String query = "abbreviation=MSK&client_ip=2a00:62c0:4a22:9201:1915:5b40:61a6:51f5&datetime=2024-04-26T00:12:26.226611+03:00";
-            URL url = new URL(path + "?" + query);
+            URL url = new URL("http://worldtimeapi.org/api/timezone/Europe/Moscow");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             int responseCode = connection.getResponseCode();
@@ -48,7 +44,7 @@ public class ConnectionWorldTime {
             if (responseCode == HttpsURLConnection.HTTP_OK) {
                 inputStream = connection.getInputStream();
 
-                File file = new File("test.json");
+                File file = new File("time.json");
 
                 fileOutputStream = new FileOutputStream(file);
 
@@ -63,7 +59,7 @@ public class ConnectionWorldTime {
 
                 try {
 
-                    JsonNode rootNode = objectMapper.readTree(new File("test.json"));
+                    JsonNode rootNode = objectMapper.readTree(new File("time.json"));
 
                     String utcDatetime = rootNode.get("datetime").asText();
 
@@ -81,17 +77,6 @@ public class ConnectionWorldTime {
             }
         } catch (IOException e) {
             System.out.println(e.toString());
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                fileOutputStream.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
         }
         return null;
     }

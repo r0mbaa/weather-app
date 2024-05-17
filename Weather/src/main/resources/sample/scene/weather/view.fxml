@@ -7,31 +7,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" style="-fx-background-image: url('1535569516_12.jpg');" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.scene.weather.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="480.0" style="-fx-background-image: url('https://wallpaperswide.com/download/spring_mountain_landscape-wallpaper-480x800.jpg');" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.scene.weather.Controller">
     <children>
         <Pane layoutX="92.0" layoutY="14.0" prefHeight="331.0" prefWidth="297.0" style="-fx-border-color: black;">
             <children>
-                <Text layoutX="14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Температура">
+                <Text layoutX="14.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Temperature">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="14.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ощущается">
+                <Text layoutX="14.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feels like">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="14.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ветер">
+                <Text layoutX="14.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wind speed">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="14.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="На улице">
+                <Text layoutX="14.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Precipitation">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Text>
-                <Text layoutX="14.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Давление">
+                <Text layoutX="14.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pressure">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -46,16 +46,16 @@
         </Pane>
         <TextField fx:id="City" layoutX="74.0" layoutY="391.0" prefHeight="25.0" prefWidth="137.0" />
         <TextField fx:id="Date" editable="false" layoutX="261.0" layoutY="391.0" prefHeight="25.0" prefWidth="152.0" />
-        <Text layoutX="117.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Город">
+        <Text layoutX="100.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Write a city">
             <font>
                 <Font size="18.0" />
             </font>
         </Text>
-        <Text layoutX="316.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="День">
+        <Text layoutX="305.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today is">
             <font>
                 <Font size="18.0" />
             </font>
         </Text>
-          <Button fx:id="BeforeDayButton" layoutX="100.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleButtonActionStart" prefHeight="25.0" prefWidth="273.0" text="Запустить!" />
+          <Button fx:id="StartButton" layoutX="100.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleButtonActionStart" prefHeight="25.0" prefWidth="273.0" text="Launch!" />
     </children>
 </Pane>
